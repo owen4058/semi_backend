@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.validate">
+	<resultMap id="memResult2" type="idValidate">
+		<result property="useraccount" column="USERACCOUNT" />
+	</resultMap> 
+  <select id="validate"  resultType="idValidate"   parameterType="idValidate" >
+	<![CDATA[
+		select * from SEMIUSERS	
+		where USERACCOUNT=#{useraccount}		
+	]]>
+  </select>
+</mapper>
