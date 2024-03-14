@@ -16,15 +16,17 @@ import com.spring.myapp.member.Member;
 import com.spring.myapp.member.idValidate;
 
 public interface MemberController {
-	public ResponseEntity<?> login(@RequestBody LoginForm loginForm,  
-			HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity<String> save(@RequestBody Member member,   
-			HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity<String> edit(Member member,  HttpServletRequest request,
-			HttpServletResponse response) throws Exception;
-	public ResponseEntity<String> delete(@RequestBody LoginForm loginForm,  HttpServletRequest request,
-			HttpServletResponse response) throws Exception;
+	public ResponseEntity<?> login(@RequestBody LoginForm loginForm, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ResponseEntity<String> save(@RequestBody Member member, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ResponseEntity<String> edit(Member member,  HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ResponseEntity<String> delete(@RequestBody LoginForm loginForm,  HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 	public ResponseEntity<String> idValidate(@RequestBody idValidate idValidate, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
+	
+	public ResponseEntity<String> logout(HttpServletRequest request) throws Exception;
 
 }

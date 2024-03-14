@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spring.myapp.review.Review;
 
 public interface ReviewController {
-	public ResponseEntity<List<Review>> getReviews(@RequestParam String movieId, 
+	public ResponseEntity<List<Review>> getReviews(@RequestParam int movieId, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity<Review> save(@RequestBody Review review,
+	public ResponseEntity<List<Review>> save(@RequestBody Review review,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity<List<Review>> edit(@RequestBody Review review,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity<Review> delete(@RequestParam String reviewId, @RequestBody String useraccount,
+	public ResponseEntity<List<Review>> delete(@RequestParam int reviewId, @RequestBody String useraccount, @RequestBody int movie_id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

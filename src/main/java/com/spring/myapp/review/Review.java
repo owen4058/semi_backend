@@ -10,18 +10,21 @@ import lombok.Data;
 @Component("review")
 @Data
 public class Review {
-	private String movieId;
 	@NotEmpty
-	private String reviewId;
+	private int movie_id;
+
+	private int reviewid;
 	@NotEmpty
-	private String userId;
+	private String useraccount;
 	@NotEmpty
 	private String content;
-	@NotEmpty
-	private Date postDate;
-	@NotEmpty
-	private Date editDate;
-	@NotEmpty
+
+	private Date creationdate;
+	
+	private boolean user_liked;
+	
+	private int rating;
+	
 	private int likes;
 	
 

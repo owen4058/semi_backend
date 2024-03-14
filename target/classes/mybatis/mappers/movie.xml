@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.movie">
+	<resultMap id="movResult" type="movie">
+        <result property="movie_id" column="movie_id" />
+        <result property="title" column="title" />
+        <result property="description" column="description" />
+        <result property="director" column="director"/>
+        <result property="actors" column="actors"/>
+        <result property="releasedate" column="releasedate"/>
+        <result property="averagerating" column="averagerating"/>
+        <result property="img_url" column="img_url"/>
+	</resultMap> 
+
+
+	<select id="selectAllMovieList" resultMap="movResult">
+      <![CDATA[
+         select * from MOVIE order by movie_id  	
+      ]]>
+	</select>
+	
+	 <select id="selectMovie" resultType="movie" parameterType="MovieID">
+      <![CDATA[
+         select * from MOVIE where movie_id=#{movie_id} 
+      ]]>
+	</select>
+    
+  <insert id="insertMovie"  parameterType="movie">
+		<![CDATA[
+		 insert into MOVIE
+		 (movie_id,title, description, director,actors,releasedate,averagerating,img_url)
+		 values
+		 ( #{movie_id}, #{title}, #{description}, #{director}, #{actors}, #{releasedate}, #{averagerating}, #{img_url})
+		]]>      
+	</insert>
+	
+	
+	
+   
+   <update id="updateMovie"  parameterType="movie">
+     <![CDATA[
+	     update MOVIE
+	     set description=#{description}, director=#{director}, actors=#{actors}, releasedate=#{releasedate}, averagerating=#{averagerating}, img_url = #{img_url}
+	     where
+	     title=#{title}
+      ]]>      
+   </update> 
+
+</mapper>

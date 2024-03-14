@@ -13,9 +13,9 @@ import lombok.Setter;
 @Data
 public class Member {
 	@NotEmpty
-	private String password;
-	@NotEmpty
 	private String useraccount;
+	@NotEmpty
+	private String password;
 	@NotEmpty
 	private String email;
 //	@NotEmpty

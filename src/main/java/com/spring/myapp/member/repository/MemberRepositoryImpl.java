@@ -1,6 +1,6 @@
 package com.spring.myapp.member.repository;
 
-import java.util.List;
+import java.util.*;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,30 +24,25 @@ public class MemberRepositoryImpl implements MemberRepository{
 
 	@Override
 	public int insertMember(Member member) throws DataAccessException {
-		int vo = sqlSession.insert("mapper.member.insertMember",member);
-		return vo;
+		return sqlSession.insert("mapper.member.insertMember",member);
 	}
 
 	@Override
 	public int deleteMember(String id) throws DataAccessException {
-		int vo = sqlSession.delete("mapper.member.deleteMember",id);
-		return vo;
+		return sqlSession.delete("mapper.member.deleteMember",id);
 	}
 	@Override
 	public int updateMember(Member member) throws DataAccessException {
-		int vo = sqlSession.update("mapper.member.updateMember",member);
-		return vo;
+		return sqlSession.update("mapper.member.updateMember",member);
 	}
 
 	@Override
-	 public LoginForm loginById(LoginForm loginForm) throws DataAccessException{
-		LoginForm vo = sqlSession.selectOne("mapper.login.loginById",loginForm);
-		return vo;
+	 public Optional<Member> loginById(LoginForm loginForm) throws DataAccessException{
+	    return Optional.ofNullable(sqlSession.selectOne("mapper.member.loginById", loginForm));
 	}
 	@Override
 	 public idValidate validate(idValidate idValidate) throws DataAccessException{
-		idValidate vo = sqlSession.selectOne("mapper.validate.validate",idValidate);
-		return vo;
+		return sqlSession.selectOne("mapper.member.validate",idValidate);
 	}
 
 

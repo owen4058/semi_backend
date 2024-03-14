@@ -7,5 +7,8 @@
 		<typeAlias type="com.spring.myapp.member.Member"  alias="member" />
 		<typeAlias type="com.spring.myapp.member.LoginForm"  alias="LoginForm" />
 		<typeAlias type="com.spring.myapp.member.idValidate"  alias="idValidate" />
+		<typeAlias type="com.spring.myapp.movie.MovieItem"  alias="movie" />
+		<typeAlias type="com.spring.myapp.movie.MovieID"  alias="MovieID" />
+		<typeAlias type="com.spring.myapp.review.Review" alias="review" />
 	</typeAliases>
 </configuration>

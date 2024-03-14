@@ -45,8 +45,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public LoginForm login(LoginForm loginForm) throws Exception{
-		return memberRepository.loginById(loginForm);
+	public Member login(LoginForm loginForm) throws Exception{
+		return memberRepository.loginById(loginForm).filter(m->m.getPassword().equals(loginForm.getPassword())).orElse(null);
 	}
 	@Override
 	public idValidate Validate(idValidate idValidate) throws Exception{

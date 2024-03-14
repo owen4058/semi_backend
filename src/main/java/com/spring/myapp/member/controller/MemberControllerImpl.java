@@ -37,14 +37,26 @@ public class MemberControllerImpl implements MemberController {
 	public ResponseEntity<String> login(@RequestBody LoginForm loginForm, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("isLogOn", true);
-		System.out.println("호출");
-		LoginForm loginForm2 = MemberService.login(loginForm);		
-		 if (loginForm2 == null) {
-	            return new ResponseEntity<>("bad", HttpStatus.NOT_FOUND);
-	        }
+		Member loginmember = MemberService.login(loginForm);
 		
+		if (loginmember == null) {
+            return new ResponseEntity<>("login bad", HttpStatus.NOT_FOUND);
+        }
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("loginMember", loginmember);
+		
+		return new ResponseEntity<>("ok", HttpStatus.OK);
+	}
+	
+	@PostMapping("/logout")
+	@Override
+	public ResponseEntity<String> logout(HttpServletRequest request) throws Exception {
+		
+		HttpSession session = request.getSession(false);	
+		 if (session != null) {
+	            session.invalidate();
+	        }
 		return new ResponseEntity<>("ok", HttpStatus.OK);
 	}
 	
@@ -78,13 +90,13 @@ public class MemberControllerImpl implements MemberController {
 		return new ResponseEntity<>("ok", HttpStatus.OK);
 	}
 	
-	@PostMapping("/delete")
+	@PostMapping("/deletee")
 	@Override
 	public ResponseEntity<String> delete(@RequestBody LoginForm loginForm, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		int vo = MemberService.removeMember(loginForm.getUseraccount());
-		
+		 
 		 if (vo!=1) {
 	            return new ResponseEntity<>("bad", HttpStatus.NOT_FOUND);
 	        }
@@ -94,7 +106,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 	@Override
 	@PostMapping("/useraccount")
-	public ResponseEntity<String> idValidate(@RequestBody idValidate idValidate,
+	public ResponseEntity<String> idValidate(@RequestBody idValidate idValidate, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		System.out.println("호출");
@@ -104,7 +116,7 @@ public class MemberControllerImpl implements MemberController {
 	        }
 		
 		
-		return new ResponseEntity<>("bad", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>("duplicated", HttpStatus.NOT_FOUND);
 	}
 
 }
