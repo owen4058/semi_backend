@@ -45,13 +45,13 @@ public class MemberControllerImpl implements MemberController {
 		ResMember loginmember = MemberService.login(loginForm);
 		
 		if (loginmember == null) {
-            return new ResponseEntity<>("ë¡œê·¸ì¸ ì‹¤íŒ¨", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("·Î±×ÀÎ ½ÇÆĞ", HttpStatus.NOT_FOUND);
         }
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("loginMember", loginmember);
 		
-		return new ResponseEntity<>("ë¡œê·¸ì¸ ì„±ê³µ", HttpStatus.OK);
+		return new ResponseEntity<>("·Î±×ÀÎ ¼º°ø", HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/logout" ,produces = "application/json; charset=utf8", method = RequestMethod.POST)
@@ -62,7 +62,7 @@ public class MemberControllerImpl implements MemberController {
 		 if (session != null) {
 	            session.invalidate();
 	        }
-		return new ResponseEntity<>("ë¡œê·¸ì•„ì›ƒ ì„±ê³µ", HttpStatus.OK);
+		return new ResponseEntity<>("·Î±×¾Æ¿ô ¼º°ø", HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/assign" ,produces = "application/json; charset=utf8", method = RequestMethod.POST)
@@ -70,19 +70,21 @@ public class MemberControllerImpl implements MemberController {
 	public ResponseEntity<String> save(@RequestBody Member member, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		member.setUseraccount(member.getUseraccount().toLowerCase());
+		
 		if (member.getUseraccount().equals("guest")||member.getUseraccount().equals("GUEST")) {
-			return new ResponseEntity<>("í—ˆìš©ë˜ì§€ì•ŠëŠ” ì•„ì´ë”” ì…ë‹ˆë‹¤.", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("Çã¿ëµÇÁö¾Ê´Â ¾ÆÀÌµğ ÀÔ´Ï´Ù.", HttpStatus.NOT_FOUND);
 //			return new ResponseEntity<>("bad", HttpStatus.FAILED_DEPENDENCY);
 		}
 		
 		int vo = MemberService.addMember(member);
 		
 		 if (vo!=1) {
-	            return new ResponseEntity<>("íšŒì›ê°€ì… ì‹¤íŒ¨", HttpStatus.NOT_FOUND);
+	            return new ResponseEntity<>("È¸¿ø°¡ÀÔ ½ÇÆĞ", HttpStatus.NOT_FOUND);
 	        }
 		
 		
-		return new ResponseEntity<>("íšŒì›ê°€ì… ì„±ê³µ", HttpStatus.OK);
+		return new ResponseEntity<>("È¸¿ø°¡ÀÔ ¼º°ø", HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/update" ,produces = "application/json; charset=utf8", method = RequestMethod.POST)
@@ -93,11 +95,11 @@ public class MemberControllerImpl implements MemberController {
 		int vo = MemberService.updateMember(member);
 		
 		 if (vo!=1) {
-	            return new ResponseEntity<>("ìˆ˜ì •ì‹¤íŒ¨", HttpStatus.NOT_FOUND);
+	            return new ResponseEntity<>("¼öÁ¤½ÇÆĞ", HttpStatus.NOT_FOUND);
 	        }
 		
 		
-		return new ResponseEntity<>("ìˆ˜ì •ì™„ë£Œ", HttpStatus.OK);
+		return new ResponseEntity<>("¼öÁ¤¿Ï·á", HttpStatus.OK);
 	}
 	
 	@PostMapping("/delete")
@@ -121,11 +123,11 @@ public class MemberControllerImpl implements MemberController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		 Optional<Member> member =  MemberService.Validate(useraccount);
 		 if (member.isEmpty()) {
-	            return new ResponseEntity<>("ì¤‘ë³µë˜ì§€ì•ŠëŠ” ì•„ì´ë”” ì…ë‹ˆë‹¤.", HttpStatus.OK);
+	            return new ResponseEntity<>("Áßº¹µÇÁö¾Ê´Â ¾ÆÀÌµğ ÀÔ´Ï´Ù.", HttpStatus.OK);
 	        }
 		
 		
-		return new ResponseEntity<>("ì¤‘ë³µ ë˜ì—ˆìŠµë‹ˆë‹¤.", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>("Áßº¹ µÇ¾ú½À´Ï´Ù.", HttpStatus.NOT_FOUND);
 	}
 
 }
