@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 @Component("loginForm")
+// 아무거나 작성함
 @Data
 public class LoginForm {
 	private String useraccount;
