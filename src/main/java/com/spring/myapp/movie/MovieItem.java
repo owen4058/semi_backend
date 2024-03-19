@@ -24,7 +24,7 @@ public class MovieItem {
 	
 	private Date releasedate;
 	
-	private int averagerating;
+	private double averagerating;
 
 	private String img_url;
 ;

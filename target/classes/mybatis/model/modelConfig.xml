@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.spring.myapp.member.Member"  alias="member" />
-		<typeAlias type="com.spring.myapp.member.LoginForm"  alias="LoginForm" />
-		<typeAlias type="com.spring.myapp.member.idValidate"  alias="idValidate" />
-		<typeAlias type="com.spring.myapp.movie.MovieItem"  alias="movie" />
-		<typeAlias type="com.spring.myapp.movie.MovieID"  alias="MovieID" />
-		<typeAlias type="com.spring.myapp.review.Review" alias="review" />
+		<typeAlias type="com.spring.myapp.member.ResMember"  alias="resmember"/>
+		<typeAlias type="com.spring.myapp.member.Member"  alias="member"/>
+		<typeAlias type="com.spring.myapp.member.LoginForm"  alias="LoginForm"/>
+		
+		<typeAlias type="com.spring.myapp.movie.MovieItem"  alias="movie"/>
+		<typeAlias type="com.spring.myapp.movie.Movierating"  alias="movierating"/>
+				
+		<typeAlias type="com.spring.myapp.review.Review" alias="review"/>
+		<typeAlias type="com.spring.myapp.review.Reviewplus" alias="Reviewplus"/>
+		<typeAlias type="com.spring.myapp.review.Reviewlikeinp" alias="reviewlikeinp"/>
+		<typeAlias type="com.spring.myapp.review.delReview" alias="delReview"/>
+		
+		<typeAlias type="com.spring.myapp.reviewlike.Reviewlike" alias="reviewlike"/>
+		<typeAlias type="com.spring.myapp.reviewlike.Reviewlikeres" alias="reviewlikeres"/>
+		
 	</typeAliases>
 </configuration>

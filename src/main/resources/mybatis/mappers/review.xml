@@ -7,12 +7,12 @@
   	<resultMap id="reviewResult" type="review">
   		<result property="reviewid" column="REVIEWID"/>
 		<result property="movie_id" column="MOVIE_ID"/>
-		<result property="userid" column="USERID"/>
+		<result property="useraccount" column="useraccount"/>
 		<result property="content" column="CONTENT"/>
 		<result property="rating" column="RATING"/>
-		<result property="user_liked" column="user_liked"/>
 		<result property="likes" column="LIKES"/>
 		<result property="creationdate" column="CREATIONDATE"/>
+		<result property="editdate" column="EDITDATE"/>
   	</resultMap>
 	
 	<select id="selectAllReviewList" resultMap="reviewResult" parameterType="int">
@@ -21,33 +21,39 @@
         WHERE movie_id = #{movie_id}
         ORDER BY  CREATIONDATE DESC
 	]]>
-	
 	</select>
+	
 	<select id="selectReview" parameterType="review">
 		<![CDATA[
-		    SELECT * FROM review WHERE reviewId = #{reviewId}
+		    SELECT * FROM review WHERE reviewid = #{reviewid}
+		]]>
+	</select>
+	
+	<select id="selectAllReview" resultType= "review" parameterType="review">
+		<![CDATA[
+		     SELECT * FROM review order by movie_id
 		]]>
 	</select>
   	
   	<insert id="insertReview" parameterType="review">
-  		<![CDATA[
-	        INSERT INTO REVIEW (movie_id, reviewid, useraccount, content, rating, CREATIONDATE)
-	        VALUES (#{movie_id}, review_id_seq.NEXTVAL, #{useraccount}, #{content}, #{rating}, SYSDATE)
-    	]]>
-  	</insert>
+	<![CDATA[ INSERT INTO REVIEW (movie_id, reviewid, useraccount, content, rating, CREATIONDATE) 
+	VALUES (#{movie_id}, review_id_seq.NEXTVAL, #{useraccount}, #{content}, #{rating}, SYSDATE) ]]>
+	</insert>
   	
   	<update id="updateReview" parameterType="review">
 	    <![CDATA[
 	        UPDATE REVIEW
-	        SET content = #{content}, creationdate = SYSDATE
-	        WHERE reviewId = #{reviewId}
+	        SET content = #{content}, rating = #{rating}, editdate = SYSDATE
+	        WHERE reviewid = #{reviewid}
 	    ]]>
 	</update>
 	
-	<delete id="deleteReview" parameterType="review">
+	<delete id="deleteReview" parameterType="java.util.Map">
 	    <![CDATA[
 	        DELETE FROM REVIEW
-	        WHERE reviewId = #{reviewId}
+	        WHERE reviewid = #{reviewid}
+            AND useraccount = #{useraccount}
+	        
 	    ]]>
 	</delete>
 	

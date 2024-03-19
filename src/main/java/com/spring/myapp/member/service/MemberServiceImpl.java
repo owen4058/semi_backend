@@ -1,6 +1,7 @@
 package com.spring.myapp.member.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -10,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.myapp.member.LoginForm;
 import com.spring.myapp.member.Member;
-import com.spring.myapp.member.idValidate;
+import com.spring.myapp.member.ResMember;
 import com.spring.myapp.member.repository.MemberRepository;
 
 
@@ -45,12 +46,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public Member login(LoginForm loginForm) throws Exception{
+	public ResMember login(LoginForm loginForm) throws Exception{
 		return memberRepository.loginById(loginForm).filter(m->m.getPassword().equals(loginForm.getPassword())).orElse(null);
 	}
 	@Override
-	public idValidate Validate(idValidate idValidate) throws Exception{
-		return memberRepository.validate(idValidate);
+	public Optional<Member> Validate(Member useraccount) throws Exception{
+		return memberRepository.validate(useraccount);
 	}
 
 }

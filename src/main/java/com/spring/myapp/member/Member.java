@@ -12,12 +12,11 @@ import lombok.Setter;
 @Component("member")
 @Data
 public class Member {
-	@NotEmpty
+	
 	private String useraccount;
-	@NotEmpty
+	
 	private String password;
-	@NotEmpty
+	
 	private String email;
-//	@NotEmpty
-//	private String username;
+
 }

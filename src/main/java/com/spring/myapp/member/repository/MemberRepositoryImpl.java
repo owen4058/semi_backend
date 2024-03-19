@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.myapp.member.LoginForm;
 import com.spring.myapp.member.Member;
-import com.spring.myapp.member.idValidate;
+import com.spring.myapp.member.ResMember;
+
 @Repository("memberRepository")
 public class MemberRepositoryImpl implements MemberRepository{
 	
@@ -37,12 +38,13 @@ public class MemberRepositoryImpl implements MemberRepository{
 	}
 
 	@Override
-	 public Optional<Member> loginById(LoginForm loginForm) throws DataAccessException{
+	 public Optional<ResMember> loginById(LoginForm loginForm) throws DataAccessException{
 	    return Optional.ofNullable(sqlSession.selectOne("mapper.member.loginById", loginForm));
 	}
 	@Override
-	 public idValidate validate(idValidate idValidate) throws DataAccessException{
-		return sqlSession.selectOne("mapper.member.validate",idValidate);
+	 public Optional<Member> validate(Member useraccount) throws DataAccessException{
+		Member member = sqlSession.selectOne("mapper.member.validate",useraccount);
+		return Optional.ofNullable(member);
 	}
 
 

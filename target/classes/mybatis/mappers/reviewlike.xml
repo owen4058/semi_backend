@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+  <mapper namespace="mapper.reviewlike">
+  	<resultMap id="reviewlikeResult" type="reviewlike">
+  		<result property="reviewid" column="reviewid"/>
+		<result property="userid" column="userid"/>
+  	</resultMap>
+  	
+	<select id="selectReviewlike"  resultType="reviewlike" parameterType="reviewlikeres">
+		<![CDATA[
+		    SELECT * FROM review_likes WHERE reviewid = #{reviewid} AND likeuseraccount = #{useraccount}
+		]]>
+	</select>
+	
+	<insert id="insertReviewlike" parameterType="reviewlikeres" >
+  		<![CDATA[
+	        INSERT INTO review_likes (reviewid, likeuseraccount)
+	        VALUES (#{reviewid}, #{useraccount})
+    	]]>
+  	</insert>
+  	
+  	<delete id="deleteReviewlike" parameterType="reviewlikeres">
+	    <![CDATA[
+	        DELETE FROM review_likes
+	        WHERE reviewid = #{reviewid} AND likeuseraccount = #{useraccount}
+	    ]]>
+	</delete>
+	
+	<update id="updatelikepl" parameterType="reviewlikeres">
+	    <![CDATA[
+	        UPDATE review
+	        SET LIKES = LIKES + 1
+	        WHERE reviewid = #{reviewid}
+	    ]]>
+	</update>
+	
+	<update id="updatelikemi" parameterType="reviewlikeres">
+    <![CDATA[
+        UPDATE review
+        SET LIKES = LIKES - 1
+        WHERE reviewid = #{reviewid}
+    ]]>
+</update>
+	
+  
+  </mapper>
+  

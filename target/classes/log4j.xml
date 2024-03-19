@@ -14,7 +14,10 @@
 	<logger name="com.spring.myapp">
 		<level value="info" />
 	</logger>
-	
+	<!-- <logger name="org.mybatis">
+        <level value="debug" />
+    </logger> -->
+  
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+  <mapper namespace="mapper.reviewlist">
+  	<resultMap id="reviewResult1" type="Reviewplus">
+  		<result property="reviewid" column="REVIEWID"/>
+		<result property="movie_id" column="MOVIE_ID"/>
+		<result property="useraccount" column="useraccount"/>
+		<result property="content" column="CONTENT"/>
+		<result property="rating" column="RATING"/>
+		<result property="likes" column="LIKES"/>
+		<result property="creationdate" column="CREATIONDATE"/>
+		<result property="editdate" column="EDITDATE"/>
+		<result property="user_liked" column="user_liked"/>
+  	</resultMap>
+	
+
+ 	
+ 	<select id="ReviewListplus" resultMap="reviewResult1" parameterType="reviewlikeinp">
+    <![CDATA[
+    SELECT a.reviewid, a.movie_id, a.content, a.rating, a.likes, a.creationdate, a.useraccount, a.editdate,
+           CASE 
+               WHEN b.reviewid IS NOT NULL THEN 1
+               ELSE 0
+           END AS user_liked 
+    FROM review a
+    LEFT JOIN review_likes b ON a.reviewid = b.reviewid AND b.likeuseraccount = #{likeuseraccount}
+    WHERE a.movie_id = #{movie_id}
+    ORDER BY a.creationdate
+    ]]>
+</select>
+
+  
+  </mapper>
+  

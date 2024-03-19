@@ -16,7 +16,7 @@
       ]]>
 	</select>
 	
-	<select id="loginById"  resultType="member"   parameterType="LoginForm" >
+	<select id="loginById"  resultType="resmember"   parameterType="LoginForm" >
 	<![CDATA[
 		select * from USERS	
 		where USERACCOUNT=#{useraccount}		
@@ -50,7 +50,7 @@
 	]]>      
   </delete>
   
-  <select id="validate"  resultType="idValidate"   parameterType="idValidate" >
+  <select id="validate"  resultType="member"   parameterType="String" >
 	<![CDATA[
 		select * from USERS	
 		where USERACCOUNT=#{useraccount}		

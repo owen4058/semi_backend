@@ -4,20 +4,25 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.myapp.review.Review;
+import com.spring.myapp.review.Reviewlikeinp;
+import com.spring.myapp.review.Reviewplus;
+import com.spring.myapp.review.delReview;
 
 public interface ReviewController {
-	public ResponseEntity<List<Review>> getReviews(@RequestParam int movieId, 
+	public ResponseEntity<List<Reviewplus>> getReviews(Reviewlikeinp reviewlikeinp,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity<List<Review>> save(@RequestBody Review review,
+	public ResponseEntity<?> save(@Valid @RequestBody Review review,BindingResult bindingResult,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity<List<Review>> edit(@RequestBody Review review,
+	public ResponseEntity<?> edit(@Valid @RequestBody Review review,BindingResult bindingResult,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity<List<Review>> delete(@RequestParam int reviewId, @RequestBody String useraccount, @RequestBody int movie_id,
+	public ResponseEntity<List<Review>> delete(@RequestParam int reviewId, @RequestBody delReview delReview,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

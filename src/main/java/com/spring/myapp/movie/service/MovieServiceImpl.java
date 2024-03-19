@@ -11,10 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.myapp.member.LoginForm;
 import com.spring.myapp.member.Member;
-import com.spring.myapp.member.idValidate;
 import com.spring.myapp.member.repository.MemberRepository;
 import com.spring.myapp.movie.MovieItem;
-import com.spring.myapp.movie.MovieID;
 import com.spring.myapp.movie.repository.MovieRepository;
 
 
@@ -34,8 +32,8 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public List Movie(MovieID movieID) throws DataAccessException {
-		return movieRepository.selectAllMovie(movieID);
+	public List Movie(int movie_id) throws DataAccessException {
+		return movieRepository.selectAllMovie(movie_id);
 	}
 
 	@Override
@@ -46,6 +44,10 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public int updateMovie(MovieItem movieItem) throws DataAccessException {
 		return movieRepository.updateMovie(movieItem);
+	}
+	@Override
+	public int setrating(int movie_id, double averagerating) throws DataAccessException {
+		return movieRepository.setrating(movie_id, averagerating);
 	}
 	
 	

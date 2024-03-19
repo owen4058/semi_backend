@@ -22,7 +22,7 @@
       ]]>
 	</select>
 	
-	 <select id="selectMovie" resultType="movie" parameterType="MovieID">
+	 <select id="selectMovie" resultType="movie" parameterType="int">
       <![CDATA[
          select * from MOVIE where movie_id=#{movie_id} 
       ]]>
@@ -47,6 +47,15 @@
 	     where
 	     title=#{title}
       ]]>      
-   </update> 
+   </update>
+   
+    <update id="setrating"  parameterType="movierating">
+     <![CDATA[
+	     update MOVIE
+	     set averagerating=#{averagerating}
+	     where
+	     movie_id=#{movie_id}
+      ]]>      
+   </update>  
 
 </mapper>
