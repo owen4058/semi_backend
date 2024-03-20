@@ -11,6 +11,7 @@ import lombok.Setter;
 
 @Component("member")
 @Data
+//아무거나 일단 실험
 public class Member {
 	
 	private String useraccount;
