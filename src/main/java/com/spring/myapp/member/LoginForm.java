@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 @Component("loginForm")
 @Data
+//주석작성34234234
 public class LoginForm {
 	private String useraccount;
 	private String password;
