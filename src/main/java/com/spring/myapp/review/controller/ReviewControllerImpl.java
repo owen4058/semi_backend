@@ -47,9 +47,12 @@ public class ReviewControllerImpl implements ReviewController {
 	@Override
 	public ResponseEntity<List<Reviewplus>> getReviews(@ModelAttribute Reviewlikeinp reviewlikeinp,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		System.out.println("리뷰 조회 컨트롤러");
+		
 		List<Reviewplus> reviewlikeList = reviewService.reviewListplus(reviewlikeinp);
         return new ResponseEntity<List<Reviewplus>>(reviewlikeList, HttpStatus.OK);
+        
 	}
 	
 
@@ -57,10 +60,13 @@ public class ReviewControllerImpl implements ReviewController {
 	@Override
 	public ResponseEntity<?> save(@Valid @RequestBody Review review, BindingResult bindingResult,
 	        HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 	    System.out.println("리뷰 저장 컨트롤러 ");
+	    
 	    if (bindingResult.hasErrors()) {
 			return new ResponseEntity<>("텍스트 양이 너무 많습니다.", HttpStatus.NOT_FOUND);
 		}
+	    
 	    List<Review> reviews10 = reviewService.addReview(review);
 	    return new ResponseEntity<>(reviews10, HttpStatus.CREATED);
 	}
@@ -70,10 +76,13 @@ public class ReviewControllerImpl implements ReviewController {
 	@Override
 	public ResponseEntity<?> edit(@Valid @RequestBody Review review,BindingResult bindingResult,
 	        HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 	    System.out.println("리뷰 업데이트 컨트롤러 ");
+	    
 	    if (bindingResult.hasErrors()) {
 			return new ResponseEntity<>("텍스트 양이 너무 많습니다.", HttpStatus.NOT_FOUND);
 		}
+	    
 	    List<Review> reviews10 = reviewService.updateReview(review);
 	    return new ResponseEntity<>(reviews10, HttpStatus.OK);
 	}
@@ -81,7 +90,9 @@ public class ReviewControllerImpl implements ReviewController {
 	@DeleteMapping("/review")
 	public ResponseEntity<List<Review>> delete(@RequestParam int reviewid, @RequestBody delReview delReview,
 	        HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 			System.out.println("리뷰 삭제 컨트롤러 ");
+			
 			List<Review> reviews10 = reviewService.removeReview(reviewid, delReview.getMovie_id(), delReview.getUseraccount());
 	        return new ResponseEntity<>(reviews10, HttpStatus.OK);
 	}
